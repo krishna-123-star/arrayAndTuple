@@ -1,0 +1,54 @@
+enum AttendenceStatus {
+  Present = "Present",
+  Leave = "Leave",
+}
+
+interface EmployeeInterface {
+  id: number;
+  name: string;
+  email: string;
+
+  addAttendence(date: string, status: AttendenceStatus): void;
+  getAttendance(): [string, AttendenceStatus][];
+}
+
+class ContractEmployee implements EmployeeInterface {
+  public id: number;
+  public name: string;
+  public email: string;
+
+  private attendanceRecord: [string, AttendenceStatus][] = [];
+
+    constructor(id: number, name: string, email: string) {
+    this.id;
+    this.name;
+    this.email;
+  }
+
+   addAttendence(date: string, status: AttendenceStatus): void {
+    this.attendanceRecord.push([date, status]);
+  }
+
+   getAttendance(): [string, AttendenceStatus][] {
+    return this.attendanceRecord;
+  }
+
+  public payrollCalculation(): number {
+    const dailyWage = 360;
+    const presentDays = this.attendanceRecord.filter(
+      ([, status]) => status === AttendenceStatus.Present
+    ).length;
+
+    return presentDays * dailyWage;
+  }
+ 
+}
+
+const emp = new ContractEmployee(101, "Krishna", "krishna@gmail.com");
+emp.addAttendence("28/05/2025", AttendenceStatus.Present);
+emp.addAttendence("01/06/2025", AttendenceStatus.Leave);
+emp.addAttendence("02/06/2025", AttendenceStatus.Present);
+
+console.log("Attendance Records:", emp.getAttendance());
+console.log(`Total Payroll: ₹${emp.payrollCalculation()}`);
+
