@@ -1,0 +1,12 @@
+type httpsStatusCode = 200 | 201 | 400 | 404;
+
+const statusCodes = (status: httpsStatusCode): void => {
+  switch(status) {
+    case 200: console.log("Http Status code is 200"); break;
+    case 201: console.log("Http Status code is 201"); break;
+    case 400: console.log("Http Status code is 400"); break;
+    case 404: console.log("Http Status code is 404"); break;
+  }
+};
+
+statusCodes(200);
