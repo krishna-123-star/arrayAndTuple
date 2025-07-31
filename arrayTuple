@@ -1,0 +1,17 @@
+type Cart = [string, number];
+
+let cartList: Cart[] = [
+  ["Shirt", 250],
+  ["Jeans", 500],
+  ["Skirt", 200]
+];
+
+cartList.forEach(cart => {
+  const[product, qty] = cart
+  console.log(`Product: ${product}, Quantity: ${qty}`);
+});
+
+//Output
+//Product: Shirt, Quantity: 250
+//Product: Jeans, Quantity: 500
+//Product: Skirt, Quantity: 200
