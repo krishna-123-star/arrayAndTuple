@@ -1,0 +1,26 @@
+enum TaskStatus {
+    Pending = "Pending",
+    InProgress = "In Progress",
+    Completed = "Completed"
+}
+
+interface Task {
+    id: number;
+    title: string;
+    description? : string;
+    status: TaskStatus;
+    dueDate: string;
+}
+
+const tasks : Task[] = [
+    {id: 1, title: 'TICKET 1', description: 'Splash screen for Flutter app', dueDate: '31/07/2025', status: TaskStatus.Completed},
+    {id: 2, title: 'TICKET 2', dueDate: '01/08/2025', status: TaskStatus.InProgress},
+    {id: 1, title: 'TICKET 3', dueDate: '02/08/2025', status: TaskStatus.Pending}
+]
+
+const pendingTasks = tasks.filter(task => task.status === TaskStatus.Pending);
+
+pendingTasks.forEach(task => {
+  console.log(`ID: ${task.id}, Title: ${task.title}, Due: ${task.dueDate}`);
+});
+
