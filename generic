@@ -1,0 +1,41 @@
+interface ApiResponse<T> {
+  readonly statusCode: number;
+  readonly success: string;
+  readonly data: T;
+}
+
+type User = {
+  id: number;
+  name: string;
+  email: string;
+};
+
+type Product = {
+  id: number;
+  title: string;
+  price: number;
+};
+
+function getUser(): ApiResponse<User> {
+  const user: User = { id: 1, name: "Krishna", email: "krishna@gmail.com" };
+  return {
+    statusCode: 200,
+    success: "true",
+    data: user,
+  };
+}
+
+function getProduct(): ApiResponse<Product> {
+  const product: Product = { id: 101, title: "Phone: S22 Ultra", price: 155000 };
+  return {
+    statusCode: 200,
+    success: "true",
+    data: product,
+  };
+}
+
+const userResponse = getUser();
+console.log("User API Response:", userResponse);
+
+const productResponse = getProduct();
+console.log("Product API Response:", productResponse);
