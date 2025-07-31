@@ -1,0 +1,32 @@
+type Marks = [string, number];
+
+class Student {
+    private marks: Marks[] = [];
+    private grade: string = "";
+
+    constructor(private id: number, private names: string){}
+
+    public add(sub: string, score: number): void {
+        this.marks.push([sub, score]);
+    }
+
+    private average(): number {
+    const total = this.marks.reduce((sum, [, score]) => sum + score, 0);
+    return total / this.marks.length;
+    }
+
+    public getFinalResult(): [string, string] {
+    const avg = this.average();
+    this.grade = avg >= 40 ? "Pass" : "Fail";
+    return [this.names, this.grade];
+  }
+  
+}
+
+const student = new Student(1, "Krishna");
+student.add("Maths", 50);
+student.add("English", 39);
+student.add("Science", 45);
+
+const [names, result] = student.getFinalResult();
+console.log(`Student: ${names}, Final Result: ${result}`);
