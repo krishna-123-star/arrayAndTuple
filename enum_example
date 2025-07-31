@@ -1,0 +1,31 @@
+enum Category {
+  Fashion = "Fashion",
+  Stationary = "Stationary",
+  Mobile = "Mobiles",
+  Appliances = "Appliances",
+  Beauty = "Beauty"
+}
+
+type Cart = [string, number, number, Category];
+
+let cartList: Cart[] = [
+["Samsung S22 Ultra", 2, 155000, Category.Mobile],
+["Pepe Jeans", 1, 1550, Category.Fashion],
+["Cello Pens", 100, 1000, Category.Stationary],
+["Whrilpool Jeans", 1, 50000, Category.Appliances],
+["Mars Lipstick", 5, 250, Category.Beauty]
+];
+
+cartList.forEach(cart => {
+  const [productName, quantity, price] = cart;
+  console.log(
+    `Product: ${productName}, Cost: ₹${price}`
+  );
+});
+
+const totalCost = cartList.reduce((sum, [, quantity, price]) => {
+  return sum + quantity * price;
+}, 0);
+
+console.log(`\nTotal Cost of Items: ₹${totalCost}`);
+
