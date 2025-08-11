@@ -1,0 +1,50 @@
+import { useEffect, useState } from "react";
+
+type Product = {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  image: string;
+  category: string;
+  rating: {
+    rate: number;
+    count: number;
+  };
+};
+
+function Products() {
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products")
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data);
+      })
+      .catch((err) => {
+        console.error("Error fetching products:", err);
+      });
+  }, []); 
+
+  return (
+    <div>
+      <h1>Products List</h1>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }}>
+        {products.map((product) => (
+          <div key={product.id} style={{ border: "1px solid #ccc", padding: "10px" }}>
+            <img src={product.image} alt={product.title} width="100" height="100" />
+            <h3>{product.title}</h3>
+            <p>${product.price}</p>
+            <small>{product.description.substring(0, 80)}...</small>
+            <p><strong>Category:</strong> {product.category}</p>
+            <p>
+              <strong>Rating:</strong> {product.rating.rate} ({product.rating.count} reviews)</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default Products;
