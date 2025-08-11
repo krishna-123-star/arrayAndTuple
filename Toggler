@@ -1,0 +1,48 @@
+import { useState } from "react";
+import './Toggler.css'
+function ThemeToggler() {
+  const [isDark, setIsDark] = useState(false);
+
+  const toggleTheme = () => {
+    setIsDark(!isDark);
+  };
+
+  return (
+    <div className={isDark ? "dark" : "light"}>
+      <h1>{isDark ? "Dark Mode" : "Light Mode"}</h1>
+      <button onClick={toggleTheme}>
+        Switch to {isDark ? "Light" : "Dark"} Mode
+      </button>
+    </div>
+  );
+}
+
+export default ThemeToggler;
+
+
+Toggler.css
+.light {
+  background-color: white;
+  color: black;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.dark {
+  background-color: black;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+button {
+  margin-top: 20px;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
